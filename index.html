@@ -266,7 +266,7 @@
       // Apply without changing URL
       const t = new Date(document.getElementById('inpDate').value);
       const tz = document.getElementById('inpTZ').value || 'Asia/Bangkok';
-      const ttl = document.getElementById('inpTitle').value || 'กำลังนับถอยหลัง…';
+      const ttl = document.getElementById('inpTitle').value || 'กำลังนับถอยหลัง เงินเดือนออก…';
       const bg = document.getElementById('inpBg').value || 'default';
       document.querySelector('h1#title').textContent = ttl;
       document.getElementById('targetText').textContent = fmtTarget(t, tz);
@@ -280,7 +280,7 @@
     document.getElementById('save').addEventListener('click', ()=>{
       const t = new Date(document.getElementById('inpDate').value);
       const tz = document.getElementById('inpTZ').value || 'Asia/Bangkok';
-      const ttl = document.getElementById('inpTitle').value || 'กำลังนับถอยหลัง…';
+      const ttl = document.getElementById('inpTitle').value || 'กำลังนับถอยหลัง เงินเดือนออก…';
       const bg = document.getElementById('inpBg').value || 'default';
       const iso = t.toISOString(); // UTC
       const paramT = encodeURIComponent(iso);
