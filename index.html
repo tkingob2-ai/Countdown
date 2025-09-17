@@ -133,7 +133,7 @@
       const f = new Intl.DateTimeFormat('th-TH', { dateStyle:'full', timeStyle:'short', timeZone:'Asia/Bangkok' });
       return `กำหนดเวลา: ${f.format(currentPayday)} (Asia/Bangkok)`;
     }
-    $('targetText').textContent = fmtTarget(currentPayday);
+    document.getElementById('targetText').textContent = fmtTarget(currentPayday);
 
     const tick = ()=>{
       const now = new Date();
@@ -150,15 +150,15 @@
       const hours = Math.floor((totalSeconds % 86400)/3600);
       const mins = Math.floor((totalSeconds % 3600)/60);
       const secs = totalSeconds % 60;
-      $('d').textContent = days;
-      $('h').textContent = hours.toString().padStart(2,'0');
-      $('m').textContent = mins.toString().padStart(2,'0');
-      $('s').textContent = secs.toString().padStart(2,'0');
+      document.getElementById('d').textContent = days;
+      document.getElementById('h').textContent = hours.toString().padStart(2,'0');
+      document.getElementById('m').textContent = mins.toString().padStart(2,'0');
+      document.getElementById('s').textContent = secs.toString().padStart(2,'0');
 
       const elapsed = now.getTime() - previousPayday.getTime();
       let pct = Math.min(100, Math.max(0, (elapsed/totalDuration)*100));
-      $('progressBar').style.width = pct.toFixed(2) + '%';
-      $('progressText').textContent = 'ความคืบหน้า: ' + pct.toFixed(1) + '%';
+      document.getElementById('progressBar').style.width = pct.toFixed(2) + '%';
+      document.getElementById('progressText').textContent = 'ความคืบหน้า: ' + pct.toFixed(1) + '%';
 
       const icon = document.getElementById('progressIcon');
       icon.classList.remove('bounce');
@@ -170,7 +170,7 @@
       void headIcon.offsetWidth;
       headIcon.classList.add('bounce');
 
-      $('coinSound').play();
+      document.getElementById('coinSound').play();
     };
     tick();
     setInterval(tick, 1000);
