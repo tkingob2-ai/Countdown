@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เงินเดือนออก | Countdown</title>
+  <meta name="description" content="หน้าเว็บนับถอยหลังวันเงินเดือนออก พร้อมแถบความคืบหน้า" />
+  <style>
+    :root{
+      --bg:#1e293b;
+      --card:#0f172aee;
+      --text:#f1f5f9;
+      --muted:#cbd5e1;
+      --accent:#38bdf8;
+      --accent-2:#6366f1;
+      --ok:#22c55e;
+      --danger:#ef4444;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", "Noto Sans", Arial, "Helvetica Neue", "Sarabun", sans-serif;
+      color:var(--text);
+      background: linear-gradient(160deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      min-height:100%; display:flex; align-items:center; justify-content:center; padding:24px;
+      position:relative;
+    }
+    .wrap{ width:min(1100px, 96vw); position:relative; z-index:2; }
+    header{ display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; }
+    h1{ font-size:clamp(28px, 4vw, 48px); margin:0; letter-spacing:0.3px; color:var(--accent); display:flex; align-items:center; gap:10px; }
+    h1 .icon{ font-size:1.2em; display:inline-block; transition: transform 0.3s ease; }
+    h1 .icon.bounce{ animation: bounce 0.6s ease; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-8px) rotate(-15deg); }
+      60% { transform: translateY(0) rotate(15deg); }
+    }
+
+    .subtitle{ color:var(--muted); font-size:clamp(14px, 1.8vw, 16px); }
+
+    .card{ background:linear-gradient(180deg, #0f172a, #0f172a), radial-gradient(1200px 600px at 50% -10%, #1e293b, transparent 60%);
+      border:1px solid #1e293b; border-radius:24px; padding:28px; box-shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+
+    .grid{ display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:16px; margin-top:22px; }
+    @media (max-width:720px){ .grid{ grid-template-columns:repeat(2, 1fr); } }
+
+    .unit{ background:linear-gradient(180deg, #1e293b, #0f172a); border:1px solid #334155; border-radius:18px; padding:18px; text-align:center; }
+    .num{ font-variant-numeric:tabular-nums; font-size:clamp(34px, 7.5vw, 80px); font-weight:800; line-height:1; color:#f8fafc; }
+    .label{ color:var(--muted); margin-top:8px; letter-spacing:.5px; text-transform:uppercase; font-size:12px; }
+
+    .target{ margin-top:10px; color:var(--muted); font-size:14px; }
+
+    .progress-wrap{ margin-top:20px; background:#334155; border-radius:12px; overflow:hidden; height:26px; position:relative; }
+    .progress-bar{ height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); transition:width 0.5s linear; }
+    .progress-icon{ position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:16px; display:inline-block; }
+    .progress-icon.bounce{ animation: bounceIcon 0.6s ease; }
+    @keyframes bounceIcon {
+      0%, 100% { transform: translateY(-50%) scale(1); }
+      30% { transform: translateY(-70%) scale(1.2); }
+      60% { transform: translateY(-50%) scale(0.9); }
+    }
+
+    .progress-text{ margin-top:6px; text-align:center; font-size:13px; color:var(--muted); }
+
+    .done{ display:none; margin-top:18px; text-align:center; font-size:clamp(18px, 2.4vw, 26px); color:var(--ok); }
+    .expired{ display:none; margin-top:18px; text-align:center; font-size:clamp(18px, 2.4vw, 26px); color:var(--danger); }
+
+    .brand{ position:fixed; bottom:10px; right:14px; font-size:12px; color:#94a3b8; z-index:3; }
+    a{ color:var(--accent) }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1 id="title"><span class="icon">💰</span> เงินเดือนออก</h1>
+      <div class="subtitle">นับถอยหลังวันเงินเดือนเข้า พร้อมแถบความคืบหน้า</div>
+    </header>
+
+    <section class="card">
+      <div class="grid" role="timer" aria-live="polite">
+        <div class="unit"><div class="num" id="d">—</div><div class="label">วัน</div></div>
+        <div class="unit"><div class="num" id="h">—</div><div class="label">ชั่วโมง</div></div>
+        <div class="unit"><div class="num" id="m">—</div><div class="label">นาที</div></div>
+        <div class="unit"><div class="num" id="s">—</div><div class="label">วินาที</div></div>
+      </div>
+      <div class="target" id="targetText"></div>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-icon" id="progressIcon">💰</div>
+      </div>
+      <div class="progress-text" id="progressText">ความคืบหน้า: 0%</div>
+      <div class="done" id="doneMsg">ถึงเวลาเงินเดือนเข้าแล้ว! 🎉</div>
+      <div class="expired" id="expiredMsg">เลยกำหนดแล้ว — กรุณาตั้งเวลาใหม่</div>
+    </section>
+  </main>
+  <div class="brand">
+    Countdown ✦ เงินเดือนคือพลังงานชีวิต 💸
+  </div>
+
+  <audio id="coinSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.wav" preload="auto"></audio>
+
+  <script>
+    const $ = (id)=>document.getElementById(id);
+
+    function calculatePayday(baseDate){
+      const holidays = [
+        '2025-01-01','2025-04-13','2025-04-14','2025-04-15','2025-05-01','2025-12-05','2025-12-10','2025-12-31'
+      ];
+      let year = baseDate.getFullYear();
+      let month = baseDate.getMonth();
+      let target = new Date(year, month+1, 0, 5, 0, 0); // วันสิ้นเดือน 05:00
+      let count=0;
+      while(count<3){
+        target.setDate(target.getDate()-1);
+        const iso = target.toISOString().slice(0,10);
+        if(target.getDay()!=0 && target.getDay()!=6 && !holidays.includes(iso)){
+          count++;
+        }
+      }
+      return target;
+    }
+
+    let currentPayday = calculatePayday(new Date());
+    // คำนวณ payday ก่อนหน้า
+    let prevMonth = new Date(currentPayday);
+    prevMonth.setMonth(prevMonth.getMonth()-1);
+    let previousPayday = calculatePayday(prevMonth);
+
+    let totalDuration = currentPayday.getTime() - previousPayday.getTime();
+
+    function fmtTarget(dt){
+      const f = new Intl.DateTimeFormat('th-TH', { dateStyle:'full', timeStyle:'short', timeZone:'Asia/Bangkok' });
+      return `กำหนดเวลา: ${f.format(currentPayday)} (Asia/Bangkok)`;
+    }
+    $('targetText').textContent = fmtTarget(currentPayday);
+
+    const tick = ()=>{
+      const now = new Date();
+      let diff = currentPayday.getTime() - now.getTime();
+      if(diff <= 0){
+        currentPayday = calculatePayday(now);
+        let prevMonth = new Date(currentPayday);
+        prevMonth.setMonth(prevMonth.getMonth()-1);
+        previousPayday = calculatePayday(prevMonth);
+        totalDuration = currentPayday.getTime() - previousPayday.getTime();
+      }
+      const totalSeconds = Math.max(0, Math.floor(diff/1000));
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400)/3600);
+      const mins = Math.floor((totalSeconds % 3600)/60);
+      const secs = totalSeconds % 60;
+      $('d').textContent = days;
+      $('h').textContent = hours.toString().padStart(2,'0');
+      $('m').textContent = mins.toString().padStart(2,'0');
+      $('s').textContent = secs.toString().padStart(2,'0');
+
+      const elapsed = now.getTime() - previousPayday.getTime();
+      let pct = Math.min(100, Math.max(0, (elapsed/totalDuration)*100));
+      $('progressBar').style.width = pct.toFixed(2) + '%';
+      $('progressText').textContent = 'ความคืบหน้า: ' + pct.toFixed(1) + '%';
+
+      const icon = document.getElementById('progressIcon');
+      icon.classList.remove('bounce');
+      void icon.offsetWidth;
+      icon.classList.add('bounce');
+
+      const headIcon = document.querySelector('h1 .icon');
+      headIcon.classList.remove('bounce');
+      void headIcon.offsetWidth;
+      headIcon.classList.add('bounce');
+
+      $('coinSound').play();
+    };
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
