@@ -6,16 +6,15 @@
   <title>เงินเดือนออก | Countdown</title>
   <meta name="description" content="นับถอยหลังวันเงินเดือนออก" />
   <style>
-  :root{
-    /* Light Theme */
-    --bg:#f6f8fc;
-    --card:#ffffffee;
-    --text:#0f172a;
-    --muted:#475569;
-    --accent:#0ea5e9;
-    --accent-2:#6366f1;
-    --ok:#16a34a;
-    --danger:#dc2626;
+:root{
+  --bg:#1e293b;
+  --card:#0f172aee;
+  --text:#f1f5f9;
+  --muted:#cbd5e1;
+  --accent:#38bdf8;
+  --accent-2:#6366f1;
+  --ok:#22c55e;
+  --danger:#ef4444;
 
     --border:#e2e8f0;
     --shadow: 0 14px 40px rgba(2, 6, 23, .10);
@@ -25,20 +24,34 @@
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
-    margin:0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", "Noto Sans", Arial, "Helvetica Neue", "Sarabun", sans-serif;
-    color:var(--text);
-    background:
-      radial-gradient(1100px 500px at 50% -10%, #dbeafe 0%, transparent 60%),
-      radial-gradient(900px 420px at 10% 20%, #e9d5ff 0%, transparent 60%),
-      linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-    min-height:100%;
-    display:flex; align-items:center; justify-content:center;
-    padding:24px;
-    position:relative;
-  }
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", "Noto Sans", Arial, "Helvetica Neue", "Sarabun", sans-serif;
+  color:var(--text);
 
-  .wrap{ width:min(1100px, 96vw); position:relative; z-index:2; }
+  /* พื้นหลังเดิม */
+  background: linear-gradient(160deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+
+  min-height:100%;
+  display:flex; align-items:center; justify-content:center;
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ทับสีขาว 50% */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: rgba(255,255,255,.50);
+  pointer-events:none;
+  z-index:1;
+}
+
+/* ให้คอนเทนต์อยู่เหนือ overlay */
+.wrap{ position:relative; z-index:2; }
+.brand{ z-index:3; }
+
 
   header{ display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; }
   h1{
