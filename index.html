@@ -6,69 +6,150 @@
   <title>เงินเดือนออก | Countdown</title>
   <meta name="description" content="นับถอยหลังวันเงินเดือนออก" />
   <style>
-    :root{
-      --bg:#1e293b;
-      --card:#0f172aee;
-      --text:#f1f5f9;
-      --muted:#cbd5e1;
-      --accent:#38bdf8;
-      --accent-2:#6366f1;
-      --ok:#22c55e;
-      --danger:#ef4444;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", "Noto Sans", Arial, "Helvetica Neue", "Sarabun", sans-serif;
-      color:var(--text);
-      background: linear-gradient(160deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-      min-height:100%; display:flex; align-items:center; justify-content:center; padding:24px;
-      position:relative;
-    }
-    .wrap{ width:min(1100px, 96vw); position:relative; z-index:2; }
-    header{ display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; }
-    h1{ font-size:clamp(28px, 4vw, 48px); margin:0; letter-spacing:0.3px; color:var(--accent); display:flex; align-items:center; gap:10px; }
-    h1 .icon{ font-size:1.2em; display:inline-block; transition: transform 0.3s ease; }
-    h1 .icon.bounce{ animation: bounce 0.6s ease; }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-8px) rotate(-15deg); }
-      60% { transform: translateY(0) rotate(15deg); }
-    }
+  :root{
+    /* Light Theme */
+    --bg:#f6f8fc;
+    --card:#ffffffee;
+    --text:#0f172a;
+    --muted:#475569;
+    --accent:#0ea5e9;
+    --accent-2:#6366f1;
+    --ok:#16a34a;
+    --danger:#dc2626;
 
-    .subtitle{ color:var(--muted); font-size:clamp(14px, 1.8vw, 16px); }
+    --border:#e2e8f0;
+    --shadow: 0 14px 40px rgba(2, 6, 23, .10);
+    --shadow-soft: 0 8px 24px rgba(2, 6, 23, .08);
+  }
 
-    .card{ background:linear-gradient(180deg, #0f172a, #0f172a), radial-gradient(1200px 600px at 50% -10%, #1e293b, transparent 60%);
-      border:1px solid #1e293b; border-radius:24px; padding:28px; box-shadow:0 10px 30px rgba(0,0,0,.4);
-    }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", "Noto Sans", Arial, "Helvetica Neue", "Sarabun", sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1100px 500px at 50% -10%, #dbeafe 0%, transparent 60%),
+      radial-gradient(900px 420px at 10% 20%, #e9d5ff 0%, transparent 60%),
+      linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+    min-height:100%;
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    position:relative;
+  }
 
-    .grid{ display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:16px; margin-top:22px; }
-    @media (max-width:720px){ .grid{ grid-template-columns:repeat(2, 1fr); } }
+  .wrap{ width:min(1100px, 96vw); position:relative; z-index:2; }
 
-    .unit{ background:linear-gradient(180deg, #1e293b, #0f172a); border:1px solid #334155; border-radius:18px; padding:18px; text-align:center; }
-    .num{ font-variant-numeric:tabular-nums; font-size:clamp(34px, 7.5vw, 80px); font-weight:800; line-height:1; color:#f8fafc; }
-    .label{ color:var(--muted); margin-top:8px; letter-spacing:.5px; text-transform:uppercase; font-size:12px; }
+  header{ display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; }
+  h1{
+    font-size:clamp(28px, 4vw, 48px);
+    margin:0;
+    letter-spacing:0.3px;
+    color:var(--accent);
+    display:flex; align-items:center; gap:10px;
+    text-shadow: 0 2px 10px rgba(14,165,233,.18);
+  }
 
-    .target{ margin-top:10px; color:var(--muted); font-size:14px; }
+  .subtitle{ color:var(--muted); font-size:clamp(14px, 1.8vw, 16px); }
 
-    .progress-wrap{ margin-top:20px; background:#334155; border-radius:12px; overflow:hidden; height:26px; position:relative; }
-    .progress-bar{ height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); transition:width 0.5s linear; }
-    .progress-icon{ position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:16px; display:inline-block; }
-    .progress-icon.bounce{ animation: bounceIcon 0.6s ease; }
-    @keyframes bounceIcon {
-      0%, 100% { transform: translateY(-50%) scale(1); }
-      30% { transform: translateY(-70%) scale(1.2); }
-      60% { transform: translateY(-50%) scale(0.9); }
-    }
+  .card{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.86)),
+      radial-gradient(1200px 600px at 50% -10%, #e0f2fe, transparent 60%);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:28px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+  }
 
-    .progress-text{ margin-top:6px; text-align:center; font-size:13px; color:var(--muted); }
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap:16px;
+    margin-top:22px;
+  }
+  @media (max-width:720px){ .grid{ grid-template-columns:repeat(2, 1fr); } }
 
-    .done{ display:none; margin-top:18px; text-align:center; font-size:clamp(18px, 2.4vw, 26px); color:var(--ok); }
-    .expired{ display:none; margin-top:18px; text-align:center; font-size:clamp(18px, 2.4vw, 26px); color:var(--danger); }
+  .unit{
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    box-shadow: var(--shadow-soft);
+  }
 
-    .brand{ position:fixed; bottom:10px; right:14px; font-size:12px; color:#94a3b8; z-index:3; }
-    a{ color:var(--accent) }
-  </style>
+  .num{
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(34px, 7.5vw, 80px);
+    font-weight:800;
+    line-height:1;
+    color:#0b1220; /* ตัวเลขเป็นสีเข้มอ่านง่าย */
+  }
+
+  .label{
+    color:var(--muted);
+    margin-top:8px;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    font-size:12px;
+  }
+
+  .target{ margin-top:10px; color:var(--muted); font-size:14px; }
+
+  .progress-wrap{
+    margin-top:20px;
+    background:#e2e8f0;
+    border-radius:12px;
+    overflow:hidden;
+    height:26px;
+    position:relative;
+    border:1px solid var(--border);
+  }
+
+  .progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    transition:width 0.5s linear;
+  }
+
+  .progress-icon{
+    position:absolute;
+    right:8px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:16px;
+    display:inline-block;
+    filter: drop-shadow(0 2px 6px rgba(2,6,23,.12));
+  }
+
+  .progress-text{ margin-top:6px; text-align:center; font-size:13px; color:var(--muted); }
+
+  .done{ display:none; margin-top:18px; text-align:center; font-size:clamp(18px, 2.4vw, 26px); color:var(--ok); }
+  .expired{ display:none; margin-top:18px; text-align:center; font-size:clamp(18px, 2.4vw, 26px); color:var(--danger); }
+
+  .brand{ position:fixed; bottom:10px; right:14px; font-size:12px; color:#64748b; z-index:3; }
+  a{ color:var(--accent) }
+
+  /* bounce animation ของเดิม ใช้ต่อได้ */
+  h1 .icon{ font-size:1.2em; display:inline-block; transition: transform 0.3s ease; }
+  h1 .icon.bounce{ animation: bounce 0.6s ease; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px) rotate(-15deg); }
+    60% { transform: translateY(0) rotate(15deg); }
+  }
+
+  .progress-icon.bounce{ animation: bounceIcon 0.6s ease; }
+  @keyframes bounceIcon {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    30% { transform: translateY(-70%) scale(1.2); }
+    60% { transform: translateY(-50%) scale(0.9); }
+  }
+</style>
+
 </head>
 <body>
   <main class="wrap">
