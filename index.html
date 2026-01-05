@@ -68,6 +68,49 @@
 
     .brand{ position:fixed; bottom:10px; right:14px; font-size:12px; color:#94a3b8; z-index:3; }
     a{ color:var(--accent) }
+
+      .cta-wrap{
+    margin-top:18px;
+    display:flex;
+    justify-content:center;
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:14px 18px;
+    border-radius:16px;
+    border:1px solid #334155;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color:#0b1220;
+    font-weight:800;
+    letter-spacing:.2px;
+    text-decoration:none;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+    transform: translateY(0);
+    transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+    min-width:min(560px, 90%);
+  }
+  .cta-btn:hover{
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow:0 14px 34px rgba(0,0,0,.45);
+  }
+  .cta-btn:active{
+    transform: translateY(0);
+    filter: brightness(0.98);
+  }
+  .cta-btn .small{
+    font-weight:600;
+    opacity:.9;
+    color:#0b1220;
+  }
+
+  @media (max-width:720px){
+    .cta-btn{ min-width: 100%; }
+  }
+   
   </style>
 </head>
 <body>
@@ -92,6 +135,18 @@
       <div class="progress-text" id="progressText">ความคืบหน้า: 0%</div>
       <div class="done" id="doneMsg">ถึงเวลาเงินเดือนเข้าแล้ว! 🎉</div>
       <div class="expired" id="expiredMsg">เลยกำหนดแล้ว — กรุณาตั้งเวลาใหม่</div>
+      
+      <div class="cta-wrap">
+        <a class="cta-btn"
+           href="https://script.google.com/macros/s/AKfycby4MPEkr6GD4nIi7w0AkAg-XrYSWnLw3jmnvp_Y3fQAcV-0PPO6eM6UHRT9S8raz-Bfcg/exec"
+           target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">🔗</span>
+          <span>เปิดระบบ (Google Apps Script Web App)</span>
+          <span class="small">— คลิกเพื่อเข้าใช้งาน</span>
+        </a>
+      </div>
+
+      
     </section>
   </main>
   <div class="brand">
