@@ -59,57 +59,59 @@
     }
 
     /* ===== กรอบนอกสุด 1 ชั้น + แสงฟุ้งซ้าย/ขวา + เงาฟ้า ===== */
-    .wrap{
-      width:min(1100px, 96vw);
-      position:relative;
-      z-index:1;
+    /* ===== กรอบนอกสุด (จางมาก ๆ) + แสงฟุ้งซ้าย/ขวา (นวลเบา ๆ) ===== */
+.wrap{
+  width:min(1100px, 96vw);
+  position:relative;
+  z-index:1;
 
-      /* กรอบ + ระยะหายใจ */
-      padding:18px;
-      border-radius: 36px;
+  padding:18px;
+  border-radius: 36px;
 
-      /* ชั้นพื้นหลังบาง ๆ ให้ดูเป็นกรอบครอบทั้งหมด */
-      background: linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,.18));
-      border:1px solid rgba(14,165,233,.22);
+  /* ทำให้พื้นหลังกรอบจางลง */
+  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.10));
+  border:1px solid rgba(14,165,233,.10);
 
-      box-shadow:
-        0 26px 70px rgba(14,165,233,.18),
-        0 18px 45px rgba(15,23,42,.10);
-      overflow: visible;
-      backdrop-filter: blur(10px);
-    }
+  /* เงาฟ้าจางลง */
+  box-shadow:
+    0 22px 60px rgba(14,165,233,.08),
+    0 18px 45px rgba(15,23,42,.10);
+  overflow: visible;
+  backdrop-filter: blur(10px);
+}
 
-    /* ขอบนอกสุด (ฟ้า) แบบไล่สี */
-    .wrap::before{
-      content:"";
-      position:absolute;
-      inset:-12px;
-      border-radius: 44px;
-      background: linear-gradient(90deg,
-        rgba(14,165,233,.70),
-        rgba(96,165,250,.30),
-        rgba(14,165,233,.70)
-      );
-      opacity:.55;
-      z-index:-1;
-      pointer-events:none;
-      filter: blur(.2px);
-    }
+/* ขอบนอกสุด (ฟ้าจางมาก) */
+.wrap::before{
+  content:"";
+  position:absolute;
+  inset:-12px;
+  border-radius: 44px;
+  background: linear-gradient(90deg,
+    rgba(14,165,233,.22),
+    rgba(96,165,250,.12),
+    rgba(14,165,233,.22)
+  );
+  opacity:.28;              /* ✅ ลดความเข้ม */
+  z-index:-1;
+  pointer-events:none;
+  filter: blur(.6px);       /* ✅ ทำให้ฟุ้งนิด ๆ */
+}
 
-    /* แสงฟุ้งซ้าย/ขวา (นวล ๆ) + เงาฟ้า */
-    .wrap::after{
-      content:"";
-      position:absolute;
-      inset:-30px;
-      border-radius: 56px;
-      background:
-        radial-gradient(560px 420px at 0% 50%,  rgba(14,165,233,.34), rgba(255,255,255,0) 62%),
-        radial-gradient(560px 420px at 100% 50%, rgba(96,165,250,.30), rgba(255,255,255,0) 62%);
-      filter: blur(12px);
-      z-index:-2;
-      pointer-events:none;
-      opacity:1;
-    }
+/* แสงฟุ้งซ้าย/ขวา (นวลจาง ๆ) */
+.wrap::after{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  border-radius: 56px;
+  background:
+    radial-gradient(560px 420px at 0% 50%,  rgba(14,165,233,.16), rgba(255,255,255,0) 64%),
+    radial-gradient(560px 420px at 100% 50%, rgba(96,165,250,.14), rgba(255,255,255,0) 64%);
+  filter: blur(16px);       /* ✅ ฟุ้งขึ้นแต่เบาลง */
+  z-index:-2;
+  pointer-events:none;
+  opacity:.65;              /* ✅ จางลงอีก */
+}
+
 
     header{
       display:flex;
