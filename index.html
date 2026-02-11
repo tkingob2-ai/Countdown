@@ -42,10 +42,9 @@
       justify-content:center;
       padding:24px;
       position:relative;
-      overflow:hidden;
+      overflow-x:hidden;
     }
 
-    /* ละออง/เกรนเบา ๆ แนววินเทจ */
     body::before{
       content:"";
       position:fixed;
@@ -58,60 +57,45 @@
       mix-blend-mode:multiply;
     }
 
-    /* ===== กรอบนอกสุด 1 ชั้น + แสงฟุ้งซ้าย/ขวา + เงาฟ้า ===== */
-    /* ===== กรอบนอกสุด (จางมาก ๆ) + แสงฟุ้งซ้าย/ขวา (นวลเบา ๆ) ===== */
-.wrap{
-  width:min(1100px, 96vw);
-  position:relative;
-  z-index:1;
+    .wrap{
+      width:min(1100px, 96vw);
+      position:relative;
+      z-index:1;
+      padding:18px;
+      border-radius: 36px;
+      background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.10));
+      border:1px solid rgba(14,165,233,.10);
+      box-shadow:
+        0 22px 60px rgba(14,165,233,.08),
+        0 18px 45px rgba(15,23,42,.10);
+      backdrop-filter: blur(10px);
+    }
 
-  padding:18px;
-  border-radius: 36px;
+    .wrap::before{
+      content:"";
+      position:absolute;
+      inset:-12px;
+      border-radius: 44px;
+      background: linear-gradient(90deg, rgba(14,165,233,.22), rgba(96,165,250,.12), rgba(14,165,233,.22));
+      opacity:.28;
+      z-index:-1;
+      pointer-events:none;
+      filter: blur(.6px);
+    }
 
-  /* ทำให้พื้นหลังกรอบจางลง */
-  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.10));
-  border:1px solid rgba(14,165,233,.10);
-
-  /* เงาฟ้าจางลง */
-  box-shadow:
-    0 22px 60px rgba(14,165,233,.08),
-    0 18px 45px rgba(15,23,42,.10);
-  overflow: visible;
-  backdrop-filter: blur(10px);
-}
-
-/* ขอบนอกสุด (ฟ้าจางมาก) */
-.wrap::before{
-  content:"";
-  position:absolute;
-  inset:-12px;
-  border-radius: 44px;
-  background: linear-gradient(90deg,
-    rgba(14,165,233,.22),
-    rgba(96,165,250,.12),
-    rgba(14,165,233,.22)
-  );
-  opacity:.28;              /* ✅ ลดความเข้ม */
-  z-index:-1;
-  pointer-events:none;
-  filter: blur(.6px);       /* ✅ ทำให้ฟุ้งนิด ๆ */
-}
-
-/* แสงฟุ้งซ้าย/ขวา (นวลจาง ๆ) */
-.wrap::after{
-  content:"";
-  position:absolute;
-  inset:-30px;
-  border-radius: 56px;
-  background:
-    radial-gradient(560px 420px at 0% 50%,  rgba(14,165,233,.16), rgba(255,255,255,0) 64%),
-    radial-gradient(560px 420px at 100% 50%, rgba(96,165,250,.14), rgba(255,255,255,0) 64%);
-  filter: blur(16px);       /* ✅ ฟุ้งขึ้นแต่เบาลง */
-  z-index:-2;
-  pointer-events:none;
-  opacity:.65;              /* ✅ จางลงอีก */
-}
-
+    .wrap::after{
+      content:"";
+      position:absolute;
+      inset:-30px;
+      border-radius: 56px;
+      background:
+        radial-gradient(560px 420px at 0% 50%,  rgba(14,165,233,.16), rgba(255,255,255,0) 64%),
+        radial-gradient(560px 420px at 100% 50%, rgba(96,165,250,.14), rgba(255,255,255,0) 64%);
+      filter: blur(16px);
+      z-index:-2;
+      pointer-events:none;
+      opacity:.65;
+    }
 
     header{
       display:flex;
@@ -124,7 +108,6 @@
       padding: 10px 8px 2px;
     }
 
-    /* เส้นใต้หัวข้อ (สวย ๆ) */
     header::after{
       content:"";
       display:block;
@@ -132,77 +115,40 @@
       height:10px;
       margin:14px auto 0;
       border-radius:999px;
-      background: linear-gradient(90deg,
-        rgba(14,165,233,0),
-        rgba(14,165,233,.38),
-        rgba(96,165,250,.38),
-        rgba(14,165,233,.38),
-        rgba(14,165,233,0)
-      );
+      background: linear-gradient(90deg, transparent, rgba(14,165,233,.38), rgba(96,165,250,.38), rgba(14,165,233,.38), transparent);
       box-shadow: 0 14px 28px rgba(14,165,233,.18);
       opacity:.95;
     }
 
-    .title-row{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+    .title-row{ display:flex; align-items:center; gap:12px; }
 
-    /* เอากรอบ/พื้นหลังออก ให้เหลือแค่ไอคอน 💰 */
     .emoji-pill{
-      width:auto;
-      height:auto;
-      border-radius:0;
-      background: transparent;
-      border:0;
-      box-shadow:none;
-      padding:0;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
       font-size:34px;
       line-height:1;
-      user-select:none;
-
-      /* เงานวล + เงาฟ้า */
-      filter:
-        drop-shadow(0 10px 18px rgba(15,23,42,.10))
-        drop-shadow(0 12px 26px rgba(14,165,233,.18));
+      filter: drop-shadow(0 10px 18px rgba(15,23,42,.10)) drop-shadow(0 12px 26px rgba(14,165,233,.18));
     }
 
     h1{
-      font-size:clamp(28px, 4vw, 46px);
+      font-size:clamp(24px, 4vw, 42px);
       margin:0;
-      letter-spacing:.2px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      line-height:1.1;
-
-      /* เอฟเฟกหัวข้อ */
       font-weight: 950;
       background: linear-gradient(90deg, #0b3a66, #0b5aa6, #0b3a66);
       -webkit-background-clip:text;
       background-clip:text;
       color: transparent;
-      text-shadow: 0 12px 30px rgba(14,165,233,.18);
     }
 
     .subtitle{
       color:rgba(71,85,105,.92);
       font-size:clamp(14px, 1.8vw, 16px);
       font-weight:700;
-      text-shadow: 0 8px 18px rgba(14,165,233,.10);
     }
 
     .card{
-      background:
-        radial-gradient(1200px 600px at 50% -10%, rgba(14,165,233,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      background: radial-gradient(1200px 600px at 50% -10%, rgba(14,165,233,.10), transparent 60%), linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
       border:1px solid var(--line);
       border-radius: var(--radius);
-      padding:28px;
+      padding:24px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(8px);
     }
@@ -210,45 +156,29 @@
     .grid{
       display:grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap:16px;
+      gap:12px;
       margin-top:18px;
     }
-    @media (max-width:720px){
-      .grid{ grid-template-columns:repeat(2, 1fr); }
-    }
+    @media (max-width:720px){ .grid{ grid-template-columns:repeat(2, 1fr); } }
 
     .unit{
       background: linear-gradient(180deg, #ffffff, #f8fbff);
       border:1px solid var(--line);
       border-radius:20px;
-      padding:18px;
+      padding:16px;
       text-align:center;
-      box-shadow: 0 10px 18px rgba(15,23,42,.05);
     }
 
     .num{
       font-variant-numeric: tabular-nums;
-      font-size:clamp(34px, 7.5vw, 78px);
+      font-size:clamp(28px, 6vw, 64px);
       font-weight:900;
-      line-height:1;
       color:#0b3a66;
-      text-shadow: 0 1px 0 rgba(255,255,255,.8);
     }
 
-    .label{
-      color:var(--muted);
-      margin-top:8px;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-      font-size:12px;
-    }
+    .label{ color:var(--muted); margin-top:4px; font-size:11px; text-transform:uppercase; }
 
-    .target{
-      margin-top:12px;
-      color:var(--muted);
-      font-size:14px;
-      text-align:center;
-    }
+    .target{ margin-top:12px; color:var(--muted); font-size:13px; text-align:center; }
 
     .progress-wrap{
       margin-top:18px;
@@ -256,9 +186,8 @@
       border:1px solid var(--line);
       border-radius:14px;
       overflow:hidden;
-      height:28px;
+      height:24px;
       position:relative;
-      box-shadow: 0 10px 18px rgba(15,23,42,.05);
     }
 
     .progress-bar{
@@ -268,205 +197,77 @@
       transition: width .45s linear;
     }
 
-    .progress-icon{
-      position:absolute;
-      right:10px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:16px;
-      user-select:none;
-      filter: drop-shadow(0 2px 6px rgba(15,23,42,.15));
-    }
+    .progress-icon{ position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:14px; }
 
-    .progress-text{
-      margin-top:8px;
-      text-align:center;
-      font-size:13px;
-      color:var(--muted);
-    }
+    .progress-text{ margin-top:8px; text-align:center; font-size:12px; color:var(--muted); }
 
-    .done, .expired{
-      display:none;
-      margin-top:16px;
-      text-align:center;
-      font-size:clamp(18px, 2.4vw, 26px);
-      font-weight:800;
-    }
-    .done{ color:var(--ok); }
-    .expired{ color:var(--danger); }
+    .done{ display:none; margin-top:16px; text-align:center; font-size:22px; font-weight:800; color:var(--ok); }
 
-    /* ===== CTA (ปุ่มลิงก์) โทนฟ้า + เอฟเฟกสวยขึ้น ===== */
+    /* ===== แก้ไข CTA เป็น 2 คอลัมน์ ===== */
     .cta-wrap{
-      margin-top:18px;
-      display:flex;
-      flex-direction:column;
+      margin-top:20px;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 เมนูต่อบรรทัด */
       gap:12px;
-      align-items:stretch;
+    }
+
+    @media (max-width:640px){
+      .cta-wrap { grid-template-columns: 1fr; } /* มือถือเหลือ 1 เมนู */
     }
 
     .cta-btn{
       position:relative;
       display:flex;
       align-items:center;
-      gap:14px;
-      padding:16px 18px;
-      border-radius:22px;
+      gap:12px;
+      padding:14px;
+      border-radius:20px;
       text-decoration:none;
-
-      background: linear-gradient(180deg, #ffffff 0%, #f2f8ff 55%, #eef6ff 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f2f8ff 100%);
       color: var(--ink);
-
-      border:1px solid rgba(14,165,233,.22);
-      box-shadow:
-        0 14px 34px rgba(15,23,42,.10),
-        0 1px 0 rgba(255,255,255,.9) inset;
-
-      transform: translateY(0);
-      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-      overflow:hidden;
-    }
-
-    .cta-btn::before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      border-radius:inherit;
-      padding:1px;
-      background: linear-gradient(90deg,
-        rgba(14,165,233,.55),
-        rgba(96,165,250,.55),
-        rgba(14,165,233,.55)
-      );
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;
-              mask-composite:exclude;
-      opacity:.55;
-      pointer-events:none;
-    }
-
-    .cta-btn::after{
-      content:"";
-      position:absolute;
-      top:-40%;
-      left:-30%;
-      width:40%;
-      height:180%;
-      background: linear-gradient(90deg,
-        transparent,
-        rgba(255,255,255,.55),
-        transparent
-      );
-      transform: rotate(18deg);
-      opacity:0;
-      pointer-events:none;
+      border:1px solid rgba(14,165,233,.20);
+      box-shadow: 0 8px 20px rgba(15,23,42,.06);
+      transition: all .2s ease;
     }
 
     .cta-btn:hover{
       transform: translateY(-2px);
-      box-shadow:
-        0 20px 50px rgba(14,165,233,.18),
-        0 16px 34px rgba(15,23,42,.12);
-      filter: brightness(1.01);
+      box-shadow: 0 12px 25px rgba(14,165,233,.15);
+      background: #fff;
     }
 
-    .cta-btn:hover::after{
-      opacity:1;
-      animation: ctaShine .85s ease;
-    }
+    .cta-ico{ font-size: 28px; filter: drop-shadow(0 4px 8px rgba(14,165,233,.2)); }
 
-    @keyframes ctaShine{
-      from{ left:-35%; opacity:0; }
-      15%{ opacity:1; }
-      to{ left:110%; opacity:0; }
-    }
-
-    .cta-btn:active{
-      transform: translateY(0);
-      box-shadow:
-        0 12px 26px rgba(15,23,42,.10);
-    }
-
-    .cta-btn:focus-visible{
-      outline:none;
-      box-shadow:
-        0 0 0 4px rgba(14,165,233,.20),
-        0 20px 50px rgba(14,165,233,.18),
-        0 16px 34px rgba(15,23,42,.12);
-    }
-
-    /* ไอคอนเมนู: ไม่เอากรอบ/พื้นหลัง + ขยายให้ใหญ่ขึ้น */
-.cta-ico{
-  width:auto;
-  height:auto;
-  padding:0;
-  border-radius:0;
-
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size: 34px;              /* ✅ ขนาดไอคอน (ปรับได้ เช่น 36/40) */
-  line-height: 1;
-  margin-right: 2px;
-
-  /* เงานุ่มนิด ๆ ให้ลอยขึ้น แต่ไม่มีกรอบ */
-  filter: drop-shadow(0 10px 18px rgba(14,165,233,.12));
-}
-
-
-    .cta-text{
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-      min-width:0;
-    }
+    .cta-text{ display:flex; flex-direction:column; min-width:0; }
 
     .cta-title{
-      font-size:14px;
-      font-weight:900;
+      font-size:13px;
+      font-weight:800;
       color:#0b3a66;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .cta-sub{
-      font-size:12px;
-      color:var(--muted);
-      font-weight:700;
-    }
-
-    @media (max-width:720px){
-      .cta-btn{ border-radius:20px; }
-    }
+    .cta-sub{ font-size:11px; color:var(--muted); font-weight:600; }
 
     .brand{
       position:fixed;
       bottom:10px;
       right:14px;
-      font-size:12px;
+      font-size:11px;
       color:#64748b;
-      z-index:2;
       background: rgba(255,255,255,.65);
-      border:1px solid var(--line);
-      padding:6px 10px;
+      padding:4px 12px;
       border-radius:999px;
-      box-shadow: 0 10px 18px rgba(15,23,42,.06);
       backdrop-filter: blur(6px);
+      border: 1px solid var(--line);
     }
 
-    /* Bounce */
     .bounce{ animation: bounce .55s ease; }
     @keyframes bounce{
       0%,100%{ transform: translateY(0) }
-      35%{ transform: translateY(-8px) rotate(-6deg) }
-      70%{ transform: translateY(0) rotate(6deg) }
+      35%{ transform: translateY(-5px) }
     }
   </style>
 </head>
@@ -475,14 +276,14 @@
   <main class="wrap">
     <header>
       <div class="title-row">
-        <h1 id="title">สำนักปลัด องค์การบริหารส่วนตำบลคลองประสงค์</h1>
+        <h1 id="title">สำนักปลัด อบต.คลองประสงค์</h1>
       </div>
-      <div class="emoji-pill" id="headPill" aria-hidden="true">💰</div>
+      <div class="emoji-pill" id="headPill">💰</div>
       <div class="subtitle">นับถอยหลังวันเงินเดือนออก</div>
     </header>
 
     <section class="card">
-      <div class="grid" role="timer" aria-live="polite">
+      <div class="grid" role="timer">
         <div class="unit"><div class="num" id="d">—</div><div class="label">วัน</div></div>
         <div class="unit"><div class="num" id="h">—</div><div class="label">ชั่วโมง</div></div>
         <div class="unit"><div class="num" id="m">—</div><div class="label">นาที</div></div>
@@ -493,75 +294,61 @@
 
       <div class="progress-wrap">
         <div class="progress-bar" id="progressBar"></div>
-        <div class="progress-icon" id="progressIcon" aria-hidden="true">💰</div>
+        <div class="progress-icon" id="progressIcon">💰</div>
       </div>
 
       <div class="progress-text" id="progressText">ความคืบหน้า: 0%</div>
       <div class="done" id="doneMsg">ถึงเวลาเงินเดือนเข้าแล้ว! 🎉</div>
-      <div class="expired" id="expiredMsg">เลยกำหนดแล้ว — กรุณาตั้งเวลาใหม่</div>
 
       <div class="cta-wrap">
-        <a class="cta-btn"
-           href="https://script.google.com/macros/s/AKfycbywC6Z6Q5bKCuWzAd7alWlM_N4PwGp6HiFjWkwiBA4jGud8_FWhYUfDd6dJL8og_gKS/exec"
-           target="_blank" rel="noopener noreferrer">
-          <span class="cta-ico" aria-hidden="true">📘</span>
+        <a class="cta-btn" href="https://script.google.com/macros/s/AKfycbywC6Z6Q5bKCuWzAd7alWlM_N4PwGp6HiFjWkwiBA4jGud8_FWhYUfDd6dJL8og_gKS/exec" target="_blank">
+          <span class="cta-ico">📘</span>
           <span class="cta-text">
-            <span class="cta-title">ทะเบียนหนังสือบันทึกข้อความ ประจำปี 2569</span>
-            <span class="cta-sub">เปิดระบบในแท็บใหม่</span>
+            <span class="cta-title">ทะเบียนหนังสือบันทึกฯ</span>
+            <span class="cta-sub">ปี 2569</span>
           </span>
         </a>
 
-        <a class="cta-btn"
-           href="https://script.google.com/macros/s/AKfycbyrEv-ffQTKI8QFruP4WBKVJpD_w1iqEiHnJhGy_etjmifCAs-eIhmgJipMtnAtMccvEg/exec"
-           target="_blank" rel="noopener noreferrer">
-          <span class="cta-ico" aria-hidden="true">🏛️</span>
+        <a class="cta-btn" href="https://script.google.com/macros/s/AKfycbyrEv-ffQTKI8QFruP4WBKVJpD_w1iqEiHnJhGy_etjmifCAs-eIhmgJipMtnAtMccvEg/exec" target="_blank">
+          <span class="cta-ico">🏛️</span>
           <span class="cta-text">
-            <span class="cta-title">ระบบจองห้องประชุมสภา อบต.คลองประสงค์</span>
-            <span class="cta-sub">จอง/ดูตารางห้องประชุม</span>
+            <span class="cta-title">จองห้องประชุมสภา</span>
+            <span class="cta-sub">ดูตารางห้องประชุม</span>
           </span>
         </a>
 
-        <a class="cta-btn"
-           href="https://script.google.com/macros/s/AKfycbwcT4vowrZfPfyvRhue5hz2cKCy0zEWurW312u-79uCgGXeXpJ2JxIqjg49M6HgeLcY5Q/exec"
-           target="_blank" rel="noopener noreferrer">
-          <span class="cta-ico" aria-hidden="true">📦</span>
+        <a class="cta-btn" href="https://script.google.com/macros/s/AKfycbwcT4vowrZfPfyvRhue5hz2cKCy0zEWurW312u-79uCgGXeXpJ2JxIqjg49M6HgeLcY5Q/exec" target="_blank">
+          <span class="cta-ico">📦</span>
           <span class="cta-text">
-            <span class="cta-title">ระบบเบิกจ่ายพัสดุ สำนักปลัด</span>
-            <span class="cta-sub">เบิก-จ่ายพัสดุออนไลน์</span>
+            <span class="cta-title">ระบบเบิกจ่ายพัสดุ</span>
+            <span class="cta-sub">เบิก-จ่ายออนไลน์</span>
           </span>
         </a>
 
-        <a class="cta-btn"
-           href="#" 
-           target="_blank" rel="noopener noreferrer">
-          <span class="cta-ico" aria-hidden="true">🗄️</span>
+        <a class="cta-btn" href="#" target="_blank">
+          <span class="cta-ico">🗄️</span>
           <span class="cta-text">
-            <span class="cta-title">ระบบจัดการครุภัณฑ์ สำนักปลัด</span>
-            <span class="cta-sub">ตรวจสอบและลงทะเบียนครุภัณฑ์</span>
+            <span class="cta-title">จัดการครุภัณฑ์</span>
+            <span class="cta-sub">ตรวจสอบทรัพย์สิน</span>
           </span>
         </a>
       </div>
     </section>
   </main>
 
-  <div class="brand">Countdown ✦ by สำนักปลัด v.1.00</div>
+  <div class="brand">Countdown ✦ by สำนักปลัด v.1.1</div>
 
   <audio id="coinSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.wav" preload="auto"></audio>
 
   <script>
     const $ = (id)=>document.getElementById(id);
-
-    // วันที่เริ่มและสิ้นสุด
     const startDate = new Date(2026, 0, 27, 6, 0, 0);
     const endDate   = new Date(2026, 1, 24, 6, 0, 0);
-
     const totalDuration = endDate.getTime() - startDate.getTime();
 
     function fmtTarget(){
-      const f = new Intl.DateTimeFormat('th-TH', {
-        dateStyle:'full', timeStyle:'short', timeZone:'Asia/Bangkok'
-      });
-      return `สิ้นสุดกำหนดเวลา: ${f.format(endDate)} (Asia/Bangkok)`;
+      const f = new Intl.DateTimeFormat('th-TH', { dateStyle:'full', timeStyle:'short' });
+      return `สิ้นสุดกำหนดเวลา: ${f.format(endDate)}`;
     }
     $('targetText').textContent = fmtTarget();
 
@@ -572,47 +359,33 @@
       let diff = endDate.getTime() - now.getTime();
 
       if(diff <= 0){
-        $('d').textContent = '0';
-        $('h').textContent = '00';
-        $('m').textContent = '00';
-        $('s').textContent = '00';
+        ['d','h','m','s'].forEach(id => $(id).textContent = '00');
         $('progressBar').style.width = '100%';
-        $('progressText').textContent = 'ความคืบหน้า: 100%';
         $('doneMsg').style.display = 'block';
         return;
       }
 
       const totalSeconds = Math.floor(diff/1000);
-      const days  = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400)/3600);
-      const mins  = Math.floor((totalSeconds % 3600)/60);
-      const secs  = totalSeconds % 60;
+      $('d').textContent = Math.floor(totalSeconds / 86400);
+      $('h').textContent = Math.floor((totalSeconds % 86400)/3600).toString().padStart(2,'0');
+      $('m').textContent = Math.floor((totalSeconds % 3600)/60).toString().padStart(2,'0');
+      $('s').textContent = (totalSeconds % 60).toString().padStart(2,'0');
 
-      $('d').textContent = days;
-      $('h').textContent = hours.toString().padStart(2,'0');
-      $('m').textContent = mins.toString().padStart(2,'0');
-      $('s').textContent = secs.toString().padStart(2,'0');
-
-      // คำนวณ % ความคืบหน้า
       const elapsed = now.getTime() - startDate.getTime();
       let pct = Math.min(100, Math.max(0, (elapsed/totalDuration)*100));
       $('progressBar').style.width = pct.toFixed(2) + '%';
       $('progressText').textContent = 'ความคืบหน้า: ' + pct.toFixed(1) + '%';
 
-      // เด้งแบบน่ารัก ๆ
-      const icon = $('progressIcon');
-      icon.classList.remove('bounce'); void icon.offsetWidth; icon.classList.add('bounce');
+      if(now.getSeconds() % 10 === 0){
+          $('progressIcon').classList.add('bounce');
+          setTimeout(()=>$('progressIcon').classList.remove('bounce'), 600);
+      }
 
-      const pill = $('headPill');
-      pill.classList.remove('bounce'); void pill.offsetWidth; pill.classList.add('bounce');
-
-      // เสียง (ลดความถี่: เล่นเฉพาะตอนเปลี่ยนนาที + ลดความดัง)
-      const currentMinuteKey = now.getFullYear()+"-"+now.getMonth()+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes();
+      const currentMinuteKey = now.getMinutes();
       if(lastMinutePlayed !== currentMinuteKey){
         lastMinutePlayed = currentMinuteKey;
         const snd = $('coinSound');
-        snd.volume = 0.18;
-        snd.currentTime = 0;
+        snd.volume = 0.1;
         snd.play().catch(()=>{});
       }
     };
