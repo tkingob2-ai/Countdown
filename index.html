@@ -1,397 +1,388 @@
 <!doctype html>
-<html lang="th">
+<html lang="th" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>สำนักปลัด | องค์การบริหารส่วนตำบลคลองประสงค์</title>
-  <meta name="description" content="ระบบองค์การบริหารส่วนตำบลคลองประสงค์" />
+  <title>หน้าแรก | สำนักปลัด อบต.คลองประสงค์</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      /* Modern + Vintage (ฟ้า-ขาวนุ่ม ๆ) */
-      --bgA:#eff6ff;      /* ฟ้าอ่อน */
-      --bgB:#ffffff;      /* ขาว */
-      --ink:#0f172a;      /* ตัวอักษรหลัก */
-      --muted:#475569;    /* ตัวอักษรรอง */
-      --line:#dbeafe;     /* เส้นขอบอ่อน */
-      --card:#ffffffcc;   /* การ์ดขาวโปร่งนิด ๆ */
-      --accent:#0ea5e9;   /* ฟ้าหลัก */
-      --accent2:#60a5fa;  /* ฟ้ารอง */
-      --ok:#16a34a;
-      --danger:#ef4444;
-
-      --shadow: 0 18px 40px rgba(15, 23, 42, .10);
-      --shadow2: 0 10px 24px rgba(15, 23, 42, .08);
-      --radius: 26px;
+    /* ธีม 1: ฟ้ามินิมอล */
+    :root {
+      --bg-color: linear-gradient(-45deg, #f8fafc, #e0f2fe, #f0fdf4);
+      --card-grad-1: rgba(255, 255, 255, 0.95);
+      --card-grad-2: rgba(224, 242, 254, 0.85); 
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --primary: #0284c7;
+      --primary-light: #38bdf8;
+      --border-color: rgba(255, 255, 255, 0.5);
+      --glow-shadow: 0 15px 35px rgba(2, 132, 199, 0.15);
+      --hover-glow: 0 0 25px rgba(56, 189, 248, 0.4);
+      --btn-bg: rgba(255, 255, 255, 0.7);
+      --btn-hover: rgba(255, 255, 255, 1);
+      --orb-1: rgba(56, 189, 248, 0.4);
+      --orb-2: rgba(52, 211, 153, 0.3);
     }
 
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", "Noto Sans", Arial, "Helvetica Neue", "Sarabun", sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(900px 520px at 18% 10%, rgba(96,165,250,.25), transparent 55%),
-        radial-gradient(900px 520px at 82% 18%, rgba(14,165,233,.22), transparent 56%),
-        radial-gradient(900px 520px at 50% 92%, rgba(96,165,250,.18), transparent 60%),
-        linear-gradient(180deg, var(--bgA), var(--bgB));
-      min-height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      position:relative;
-      overflow-x:hidden;
+    /* ธีม 2: ดาร์กโหมด */
+    [data-theme="dark"] {
+      --bg-color: linear-gradient(-45deg, #020617, #0f172a, #172554);
+      --card-grad-1: rgba(30, 41, 59, 0.85);
+      --card-grad-2: rgba(15, 23, 42, 0.95);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-light: #7dd3fc;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --glow-shadow: 0 15px 40px rgba(56, 189, 248, 0.25);
+      --hover-glow: 0 0 30px rgba(125, 211, 252, 0.3);
+      --btn-bg: rgba(15, 23, 42, 0.6);
+      --btn-hover: rgba(30, 41, 59, 0.9);
+      --orb-1: rgba(14, 165, 233, 0.3);
+      --orb-2: rgba(99, 102, 241, 0.25);
     }
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:
-        repeating-linear-gradient(0deg, rgba(15,23,42,.025) 0 1px, transparent 1px 6px),
-        repeating-linear-gradient(90deg, rgba(15,23,42,.018) 0 1px, transparent 1px 7px);
-      opacity:.35;
-      pointer-events:none;
-      mix-blend-mode:multiply;
+    /* ธีม 3: ธรรมชาติ */
+    [data-theme="nature"] {
+      --bg-color: linear-gradient(-45deg, #ecfdf5, #dcfce7, #fef08a);
+      --card-grad-1: rgba(255, 255, 255, 0.95);
+      --card-grad-2: rgba(220, 252, 231, 0.85);
+      --text-main: #064e3b;
+      --text-muted: #047857;
+      --primary: #059669;
+      --primary-light: #34d399;
+      --border-color: rgba(255, 255, 255, 0.6);
+      --glow-shadow: 0 15px 35px rgba(5, 150, 105, 0.15);
+      --hover-glow: 0 0 25px rgba(52, 211, 153, 0.4);
+      --btn-bg: rgba(255, 255, 255, 0.7);
+      --btn-hover: rgba(255, 255, 255, 1);
+      --orb-1: rgba(52, 211, 153, 0.4);
+      --orb-2: rgba(250, 204, 21, 0.3);
     }
 
-    .wrap{
-      width:min(1100px, 96vw);
-      position:relative;
-      z-index:1;
-      padding:18px;
-      border-radius: 36px;
-      background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.10));
-      border:1px solid rgba(14,165,233,.10);
-      box-shadow:
-        0 22px 60px rgba(14,165,233,.08),
-        0 18px 45px rgba(15,23,42,.10);
-      backdrop-filter: blur(10px);
+    /* ธีม 4: ซันเซ็ต */
+    [data-theme="sunset"] {
+      --bg-color: linear-gradient(-45deg, #fff7ed, #ffedd5, #fecaca);
+      --card-grad-1: rgba(255, 255, 255, 0.95);
+      --card-grad-2: rgba(255, 237, 213, 0.85);
+      --text-main: #7c2d12;
+      --text-muted: #9a3412;
+      --primary: #ea580c;
+      --primary-light: #fb923c;
+      --border-color: rgba(255, 255, 255, 0.6);
+      --glow-shadow: 0 15px 35px rgba(234, 88, 12, 0.15);
+      --hover-glow: 0 0 25px rgba(251, 146, 60, 0.4);
+      --btn-bg: rgba(255, 255, 255, 0.7);
+      --btn-hover: rgba(255, 255, 255, 1);
+      --orb-1: rgba(251, 146, 60, 0.4);
+      --orb-2: rgba(244, 63, 94, 0.25);
     }
 
-    .wrap::before{
-      content:"";
-      position:absolute;
-      inset:-12px;
-      border-radius: 44px;
-      background: linear-gradient(90deg, rgba(14,165,233,.22), rgba(96,165,250,.12), rgba(14,165,233,.22));
-      opacity:.28;
-      z-index:-1;
-      pointer-events:none;
-      filter: blur(.6px);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: auto; min-height: 100%; overflow-x: hidden; transition: background 0.8s ease; }
+
+    body {
+      font-family: 'Noto Sans Thai', sans-serif; color: var(--text-main);
+      background: var(--bg-color); background-size: 300% 300%;
+      animation: gradientBG 15s ease infinite;
+      display: flex; flex-direction: column; padding: 40px 20px; position: relative;
     }
 
-    .wrap::after{
-      content:"";
-      position:absolute;
-      inset:-30px;
-      border-radius: 56px;
-      background:
-        radial-gradient(560px 420px at 0% 50%,  rgba(14,165,233,.16), rgba(255,255,255,0) 64%),
-        radial-gradient(560px 420px at 100% 50%, rgba(96,165,250,.14), rgba(255,255,255,0) 64%);
-      filter: blur(16px);
-      z-index:-2;
-      pointer-events:none;
-      opacity:.65;
+    @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+    .bg-orbs { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; pointer-events: none; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.8; transition: background 1s ease; }
+    .orb-1 { width: 400px; height: 400px; background: var(--orb-1); top: -100px; left: -100px; animation: floatOrb 12s ease-in-out infinite alternate; }
+    .orb-2 { width: 500px; height: 500px; background: var(--orb-2); bottom: -150px; right: -150px; animation: floatOrb 15s ease-in-out infinite alternate-reverse; }
+    @keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(100px, 50px) scale(1.2); } }
+
+    .container { width: 100%; max-width: 900px; position: relative; z-index: 10; margin: auto; }
+
+    .dashboard-card {
+      position: relative; background: linear-gradient(-45deg, var(--card-grad-1), var(--card-grad-2), var(--card-grad-1));
+      background-size: 200% 200%; animation: cardGradient 8s ease infinite;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color); border-radius: 24px; padding: 45px 40px 40px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02), var(--glow-shadow); transition: all 0.5s ease;
+    }
+    @keyframes cardGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+    .theme-switcher {
+      position: absolute; top: 15px; right: 20px; display: flex; gap: 8px;
+      background: rgba(255, 255, 255, 0.4); padding: 8px; border-radius: 99px;
+      border: 1px solid var(--border-color); backdrop-filter: blur(10px); z-index: 20;
+    }
+    [data-theme="dark"] .theme-switcher { background: rgba(0, 0, 0, 0.3); }
+
+    .theme-btn { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .theme-btn:hover { transform: scale(1.3); box-shadow: 0 0 10px rgba(255,255,255,0.8); }
+    .theme-btn.active { border-color: var(--text-main); transform: scale(1.2); box-shadow: 0 0 12px var(--primary-light); }
+    .btn-light { background: #38bdf8; } .btn-dark { background: #1e293b; } .btn-nature { background: #10b981; } .btn-sunset { background: #f97316; }
+
+    header { text-align: center; margin-bottom: 30px; margin-top: 10px; }
+    .emoji-icon { font-size: 45px; margin-bottom: 10px; display: inline-block; animation: bounceFloat 3s ease-in-out infinite; filter: drop-shadow(0 10px 15px var(--primary-light)); }
+    @keyframes bounceFloat { 0%, 100% { transform: translateY(0px) scale(1); } 50% { transform: translateY(-12px) scale(1.05); } }
+    h1 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; color: var(--text-main); margin-bottom: 5px; text-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .subtitle { color: var(--primary); font-size: 16px; font-weight: 600; letter-spacing: 0.5px; }
+
+    .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+    @media (max-width: 600px) { .timer-grid { grid-template-columns: repeat(2, 1fr); } .dashboard-card { padding: 60px 24px 24px; } .theme-switcher { top: 15px; right: 50%; transform: translateX(50%); } }
+
+    .time-unit { background: transparent; padding: 10px; text-align: center; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .time-unit:hover { transform: translateY(-5px); }
+
+    .time-num { 
+      position: relative; font-size: clamp(36px, 6vw, 56px); font-weight: 700; color: var(--primary); height: 2.2em; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; text-shadow: 0 0 25px rgba(255,255,255,0.7); font-variant-numeric: tabular-nums; 
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 60%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 60%, transparent 100%); 
+    }
+    .odo-digit { position: absolute; width: 100%; display: flex; align-items: center; justify-content: center; line-height: 1; transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s ease; }
+    .odo-digit.current { transform: translateY(0); opacity: 1; }
+    .odo-digit.next { transform: translateY(-110%); opacity: 0.1; } 
+    .odo-digit.slide-in { transform: translateY(0); opacity: 1; } 
+    .odo-digit.slide-out { transform: translateY(110%); opacity: 0.1; }
+    .time-label { color: var(--text-muted); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    .target-date { text-align: center; color: var(--text-muted); font-size: 14px; margin-bottom: 15px; font-weight: 600; }
+    
+    .progress-container { background: rgba(0,0,0,0.05); border-radius: 99px; height: 16px; width: 100%; margin-bottom: 10px; border: 1px solid var(--border-color); box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+    .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 99px; box-shadow: 0 0 15px var(--primary-light); position: relative; overflow: hidden; transition: width 0.3s ease-out; }
+
+    .beam { position: absolute; top: -10px; left: 0; width: 100%; height: calc(100% + 20px); background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.6) 85%, #ffffff 100%); filter: blur(6px); transform: translateX(-100%); opacity: 0; }
+    .beam.animate { animation: runCrash 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    @keyframes runCrash { 0% { transform: translateX(-100%); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateX(0); opacity: 0; } }
+
+    .progress-text { text-align: right; font-size: 14px; font-weight: 700; margin-bottom: 40px; }
+    .static-text { color: var(--primary); margin-right: 5px; }
+    
+    /* แยกสไตล์ตัวเลขแต่ละหลักให้เด้งอิสระ */
+    .pct-number { display: inline-block; color: var(--primary); font-variant-numeric: tabular-nums; }
+    .pct-number .digit { 
+      display: inline-block; 
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s, text-shadow 0.2s; 
+    }
+    .pct-number .digit.pop-digit { 
+      transform: scale(1.4) translateY(-2px); 
+      color: var(--primary-light); 
+      text-shadow: 0 0 15px var(--primary-light); 
     }
 
-    header{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:center;
-      text-align:center;
-      margin-bottom:14px;
-      position:relative;
-      padding: 10px 8px 2px;
-    }
-
-    header::after{
-      content:"";
-      display:block;
-      width:min(560px, 92%);
-      height:10px;
-      margin:14px auto 0;
-      border-radius:999px;
-      background: linear-gradient(90deg, transparent, rgba(14,165,233,.38), rgba(96,165,250,.38), rgba(14,165,233,.38), transparent);
-      box-shadow: 0 14px 28px rgba(14,165,233,.18);
-      opacity:.95;
-    }
-
-    .title-row{ display:flex; align-items:center; gap:12px; }
-
-    .emoji-pill{
-      font-size:34px;
-      line-height:1;
-      filter: drop-shadow(0 10px 18px rgba(15,23,42,.10)) drop-shadow(0 12px 26px rgba(14,165,233,.18));
-    }
-
-    h1{
-      font-size:clamp(24px, 4vw, 42px);
-      margin:0;
-      font-weight: 950;
-      background: linear-gradient(90deg, #0b3a66, #0b5aa6, #0b3a66);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color: transparent;
-    }
-
-    .subtitle{
-      color:rgba(71,85,105,.92);
-      font-size:clamp(14px, 1.8vw, 16px);
-      font-weight:700;
-    }
-
-    .card{
-      background: radial-gradient(1200px 600px at 50% -10%, rgba(14,165,233,.10), transparent 60%), linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:24px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap:12px;
-      margin-top:18px;
-    }
-    @media (max-width:720px){ .grid{ grid-template-columns:repeat(2, 1fr); } }
-
-    .unit{
-      background: linear-gradient(180deg, #ffffff, #f8fbff);
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:16px;
-      text-align:center;
-    }
-
-    .num{
-      font-variant-numeric: tabular-nums;
-      font-size:clamp(28px, 6vw, 64px);
-      font-weight:900;
-      color:#0b3a66;
-    }
-
-    .label{ color:var(--muted); margin-top:4px; font-size:11px; text-transform:uppercase; }
-
-    .target{ margin-top:12px; color:var(--muted); font-size:13px; text-align:center; }
-
-    .progress-wrap{
-      margin-top:18px;
-      background:#eaf2ff;
-      border:1px solid var(--line);
-      border-radius:14px;
-      overflow:hidden;
-      height:24px;
-      position:relative;
-    }
-
-    .progress-bar{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transition: width .45s linear;
-    }
-
-    .progress-icon{ position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:14px; }
-
-    .progress-text{ margin-top:8px; text-align:center; font-size:12px; color:var(--muted); }
-
-    .done{ display:none; margin-top:16px; text-align:center; font-size:22px; font-weight:800; color:var(--ok); }
-
-    /* ===== แก้ไข CTA เป็น 2 คอลัมน์ ===== */
-    .cta-wrap{
-      margin-top:20px;
-      display:grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 เมนูต่อบรรทัด */
-      gap:12px;
-    }
-
-    @media (max-width:640px){
-      .cta-wrap { grid-template-columns: 1fr; } /* มือถือเหลือ 1 เมนู */
-    }
-
-    .cta-btn{
-      position:relative;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:14px;
-      border-radius:20px;
-      text-decoration:none;
-      background: linear-gradient(180deg, #ffffff 0%, #f2f8ff 100%);
-      color: var(--ink);
-      border:1px solid rgba(14,165,233,.20);
-      box-shadow: 0 8px 20px rgba(15,23,42,.06);
-      transition: all .2s ease;
-    }
-
-    .cta-btn:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 12px 25px rgba(14,165,233,.15);
-      background: #fff;
-    }
-
-    .cta-ico{ font-size: 28px; filter: drop-shadow(0 4px 8px rgba(14,165,233,.2)); }
-
-    .cta-text{ display:flex; flex-direction:column; min-width:0; }
-
-    .cta-title{
-      font-size:13px;
-      font-weight:800;
-      color:#0b3a66;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .cta-sub{ font-size:11px; color:var(--muted); font-weight:600; }
-
-    .brand{
-      position:fixed;
-      bottom:10px;
-      right:14px;
-      font-size:11px;
-      color:#64748b;
-      background: rgba(255,255,255,.65);
-      padding:4px 12px;
-      border-radius:999px;
-      backdrop-filter: blur(6px);
-      border: 1px solid var(--line);
-    }
-
-    .bounce{ animation: bounce .55s ease; }
-    @keyframes bounce{
-      0%,100%{ transform: translateY(0) }
-      35%{ transform: translateY(-5px) }
-    }
+    .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 768px) { .menu-grid { grid-template-columns: 1fr; } }
+    .menu-btn { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--btn-bg); border: 1px solid var(--border-color); border-radius: 16px; text-decoration: none; color: var(--text-main); transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .menu-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: all 0.5s ease; }
+    .menu-btn:hover { background: var(--btn-hover); border-color: var(--primary-light); transform: translateY(-4px) scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.05), var(--hover-glow); }
+    .menu-btn:hover::before { left: 100%; }
+    .menu-icon { font-size: 32px; background: rgba(255,255,255,0.5); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: all 0.3s ease; }
+    .menu-btn:hover .menu-icon { transform: rotate(5deg) scale(1.1); box-shadow: var(--hover-glow); background: #fff; }
+    .menu-text { display: flex; flex-direction: column; } .menu-title { font-size: 15px; font-weight: 700; color: var(--text-main); } .menu-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .footer { text-align: center; margin-top: 20px; font-size: 12px; color: var(--text-muted); opacity: 0.8; }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
-    <header>
-      <div class="title-row">
-        <h1 id="title">สำนักปลัด อบต.คลองประสงค์</h1>
-      </div>
-      <div class="emoji-pill" id="headPill">💰</div>
-      <div class="subtitle">นับถอยหลังวันเงินเดือนออก</div>
-    </header>
+  <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
 
-    <section class="card">
-      <div class="grid" role="timer">
-        <div class="unit"><div class="num" id="d">—</div><div class="label">วัน</div></div>
-        <div class="unit"><div class="num" id="h">—</div><div class="label">ชั่วโมง</div></div>
-        <div class="unit"><div class="num" id="m">—</div><div class="label">นาที</div></div>
-        <div class="unit"><div class="num" id="s">—</div><div class="label">วินาที</div></div>
+  <div class="container">
+    <div class="dashboard-card">
+      <div class="theme-switcher">
+        <button class="theme-btn btn-light active" onclick="setTheme('light')" title="ฟ้ามินิมอล"></button>
+        <button class="theme-btn btn-dark" onclick="setTheme('dark')" title="ดาร์กโหมด"></button>
+        <button class="theme-btn btn-nature" onclick="setTheme('nature')" title="ธรรมชาติ"></button>
+        <button class="theme-btn btn-sunset" onclick="setTheme('sunset')" title="ซันเซ็ต"></button>
       </div>
 
-      <div class="target" id="targetText"></div>
+      <header>
+        <div class="emoji-icon">💰</div>
+        <h1>สำนักปลัด อบต.คลองประสงค์</h1>
+        <div class="subtitle">นับถอยหลังวันเงินเดือนออก</div>
+      </header>
 
-      <div class="progress-wrap">
-        <div class="progress-bar" id="progressBar"></div>
-        <div class="progress-icon" id="progressIcon">💰</div>
+      <div class="timer-grid">
+        <div class="time-unit"><div class="time-num" id="d"></div><div class="time-label">วัน</div></div>
+        <div class="time-unit"><div class="time-num" id="h"></div><div class="time-label">ชั่วโมง</div></div>
+        <div class="time-unit"><div class="time-num" id="m"></div><div class="time-label">นาที</div></div>
+        <div class="time-unit"><div class="time-num" id="s"></div><div class="time-label">วินาที</div></div>
       </div>
 
-      <div class="progress-text" id="progressText">ความคืบหน้า: 0%</div>
-      <div class="done" id="doneMsg">ถึงเวลาเงินเดือนเข้าแล้ว! 🎉</div>
+      <div class="target-date" id="targetText"></div>
+      
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar">
+          <div class="beam" id="beamEffect"></div>
+        </div>
+      </div>
+      
+      <div class="progress-text">
+        <span class="static-text">ความคืบหน้า</span>
+        <span class="pct-number" id="pctNumber"></span>
+      </div>
 
-      <div class="cta-wrap">
-        <a class="cta-btn" href="https://script.google.com/macros/s/AKfycbywC6Z6Q5bKCuWzAd7alWlM_N4PwGp6HiFjWkwiBA4jGud8_FWhYUfDd6dJL8og_gKS/exec" target="_blank">
-          <span class="cta-ico">📘</span>
-          <span class="cta-text">
-            <span class="cta-title">ทะเบียนหนังสือบันทึกฯ</span>
-            <span class="cta-sub">ปี 2569</span>
-          </span>
+      <div class="menu-grid">
+        <a class="menu-btn" href="https://script.google.com/macros/s/AKfycbywC6Z6Q5bKCuWzAd7alWlM_N4PwGp6HiFjWkwiBA4jGud8_FWhYUfDd6dJL8og_gKS/exec" target="_blank">
+          <div class="menu-icon">📘</div>
+          <div class="menu-text"><span class="menu-title">ทะเบียนหนังสือบันทึกฯ</span><span class="menu-sub">ระบบจัดการเอกสาร ปี 2569</span></div>
         </a>
-
-        <a class="cta-btn" href="https://script.google.com/macros/s/AKfycbxlH2xnBCTlWWHFxJ0rEzcjth7Yqwv-oAtMF-rXwuVJGkC4KwTeSmeIhWbpJ9mh0aoQKQ/exec" target="_blank">
-          <span class="cta-ico">🏛️</span>
-          <span class="cta-text">
-            <span class="cta-title">จองห้องประชุมสภา</span>
-            <span class="cta-sub">ดูตารางห้องประชุม</span>
-          </span>
+        <a class="menu-btn" href="https://script.google.com/macros/s/AKfycbxlH2xnBCTlWWHFxJ0rEzcjth7Yqwv-oAtMF-rXwuVJGkC4KwTeSmeIhWbpJ9mh0aoQKQ/exec" target="_blank">
+          <div class="menu-icon">🏛️</div>
+          <div class="menu-text"><span class="menu-title">จองห้องประชุมสภา</span><span class="menu-sub">ตรวจสอบตารางและจองห้อง</span></div>
         </a>
-
-        <a class="cta-btn" href="https://minebancom.com/v2/login.php" target="_blank">
-          <span class="cta-ico">📦</span>
-          <span class="cta-text">
-            <span class="cta-title">ระบบเบิกจ่ายพัสดุ</span>
-            <span class="cta-sub">เบิก-จ่ายออนไลน์</span>
-          </span>
+        <a class="menu-btn" href="https://minebancom.com/v2/login.php" target="_blank">
+          <div class="menu-icon">📦</div>
+          <div class="menu-text"><span class="menu-title">ระบบเบิกจ่ายพัสดุ</span><span class="menu-sub">จัดการเบิก-จ่ายออนไลน์</span></div>
         </a>
-
-        <a class="cta-btn" href="https://script.google.com/macros/s/AKfycbyb8j292_TDmPMYMZpP35vK3GxrqHtNNz0WIe3djq02oUFQrEWNjzlMnPQxM1FL2ro/exec" target="_blank">
-          <span class="cta-ico">🗄️</span>
-          <span class="cta-text">
-            <span class="cta-title">ระบบแจ้งขอพัสดุ/ครุภัณฑ์</span>
-            <span class="cta-sub">แจ้งความต้องการ แจ้งให้ซื้อ</span>
-          </span>
+        <a class="menu-btn" href="https://script.google.com/macros/s/AKfycbyb8j292_TDmPMYMZpP35vK3GxrqHtNNz0WIe3djq02oUFQrEWNjzlMnPQxM1FL2ro/exec" target="_blank">
+          <div class="menu-icon">🗄️</div>
+          <div class="menu-text"><span class="menu-title">แจ้งขอพัสดุ/ครุภัณฑ์</span><span class="menu-sub">แจ้งความต้องการจัดซื้อ</span></div>
         </a>
       </div>
-    </section>
-  </main>
-
-  <div class="brand">Countdown ✦ by สำนักปลัด v.1.1</div>
-
-  <audio id="coinSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.wav" preload="auto"></audio>
+    </div>
+    <div class="footer">Dashboard ✦ by สำนักปลัด v.9.2 </div>
+  </div>
 
   <script>
-    const $ = (id)=>document.getElementById(id);
-    const startDate = new Date(2026, 7, 26, 6, 0, 0);
-    const endDate   = new Date(2026, 8, 25, 6, 0, 0);
+    function setTheme(themeName) {
+      document.documentElement.setAttribute('data-theme', themeName);
+      localStorage.setItem('savedTheme', themeName);
+      document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.btn-${themeName}`).classList.add('active');
+    }
+    setTheme(localStorage.getItem('savedTheme') || 'light');
+
+    const startDate = new Date(2026, 7, 26, 6, 0, 0); 
+    const endDate   = new Date(2026, 8, 25, 6, 0, 0); 
     const totalDuration = endDate.getTime() - startDate.getTime();
 
-    function fmtTarget(){
-      const f = new Intl.DateTimeFormat('th-TH', { dateStyle:'full', timeStyle:'short' });
-      return `สิ้นสุดกำหนดเวลา: ${f.format(endDate)}`;
-    }
-    $('targetText').textContent = fmtTarget();
+    document.getElementById('targetText').textContent = `สิ้นสุดกำหนด: ${new Intl.DateTimeFormat('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(endDate)} น.`;
 
-    let lastMinutePlayed = null;
-
-    const tick = ()=>{
-      const now = new Date();
-      let diff = endDate.getTime() - now.getTime();
-
-      if(diff <= 0){
-        ['d','h','m','s'].forEach(id => $(id).textContent = '00');
-        $('progressBar').style.width = '100%';
-        $('doneMsg').style.display = 'block';
+    function updateOdometer(id, value) {
+      const el = document.getElementById(id);
+      const currentVal = el.getAttribute('data-val');
+      
+      if (currentVal === null) {
+        el.setAttribute('data-val', value);
+        el.innerHTML = `<div class="odo-digit current">${value}</div>`;
         return;
       }
+      
+      if (currentVal !== value) {
+        if (document.hidden) {
+            el.setAttribute('data-val', value);
+            el.innerHTML = `<div class="odo-digit current">${value}</div>`;
+            return;
+        }
 
-      const totalSeconds = Math.floor(diff/1000);
-      $('d').textContent = Math.floor(totalSeconds / 86400);
-      $('h').textContent = Math.floor((totalSeconds % 86400)/3600).toString().padStart(2,'0');
-      $('m').textContent = Math.floor((totalSeconds % 3600)/60).toString().padStart(2,'0');
-      $('s').textContent = (totalSeconds % 60).toString().padStart(2,'0');
+        el.setAttribute('data-val', value);
+        const oldDigit = el.querySelector('.current');
+        if (oldDigit) { 
+          oldDigit.classList.remove('current'); 
+          oldDigit.classList.add('slide-out'); 
+        }
 
+        const stales = el.querySelectorAll('.next, .slide-in');
+        stales.forEach(n => n.remove());
+        
+        const newDigit = document.createElement('div');
+        newDigit.className = 'odo-digit next';
+        newDigit.textContent = value;
+        el.appendChild(newDigit);
+        
+        void newDigit.offsetWidth; 
+        newDigit.classList.add('slide-in');
+        
+        setTimeout(() => {
+          if (oldDigit) oldDigit.remove();
+          newDigit.classList.remove('next', 'slide-in');
+          newDigit.classList.add('current');
+        }, 600); 
+      }
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = endDate.getTime() - now.getTime();
+      if (diff <= 0) {
+        ['d','h','m','s'].forEach(id => updateOdometer(id, '00'));
+        return;
+      }
+      const totalSecs = Math.floor(diff / 1000);
+      updateOdometer('d', String(Math.floor(totalSecs / 86400)));
+      updateOdometer('h', String(Math.floor((totalSecs % 86400) / 3600)).padStart(2, '0'));
+      updateOdometer('m', String(Math.floor((totalSecs % 3600) / 60)).padStart(2, '0'));
+      updateOdometer('s', String(totalSecs % 60).padStart(2, '0'));
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    let lastPctStr = "";
+    
+    // ฟังก์ชันสร้างตัวเลขให้แต่ละหลักอยู่ใน span ของตัวเอง
+    function renderDigits(containerId, oldStr, newStr, applyPop) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = ''; 
+      
+      const oldFull = oldStr + '%';
+      const newFull = newStr + '%';
+      const maxLen = Math.max(oldFull.length, newFull.length);
+      
+      const paddedOld = oldFull.padStart(maxLen, ' ');
+      const paddedNew = newFull.padStart(maxLen, ' ');
+      
+      for (let i = 0; i < maxLen; i++) {
+        if (paddedNew[i] === ' ') continue;
+        
+        let span = document.createElement('span');
+        span.className = 'digit';
+        span.textContent = paddedNew[i];
+        
+        // ถ้าค่านั้นเปลี่ยนไปจากของเดิม ให้ใส่คลาส pop-digit เฉพาะตัวนั้น
+        if (applyPop && paddedNew[i] !== paddedOld[i]) {
+          span.classList.add('pop-digit');
+        }
+        container.appendChild(span);
+      }
+      
+      // เอาเอฟเฟกต์ pop ออกเมื่อแสดงผลเสร็จ
+      if (applyPop) {
+        setTimeout(() => {
+          container.querySelectorAll('.pop-digit').forEach(el => el.classList.remove('pop-digit'));
+        }, 300);
+      }
+    }
+
+    function updateProgressRealtime() {
+      const now = new Date();
       const elapsed = now.getTime() - startDate.getTime();
-      let pct = Math.min(100, Math.max(0, (elapsed/totalDuration)*100));
-      $('progressBar').style.width = pct.toFixed(2) + '%';
-      $('progressText').textContent = 'ความคืบหน้า: ' + pct.toFixed(1) + '%';
-
-      if(now.getSeconds() % 10 === 0){
-          $('progressIcon').classList.add('bounce');
-          setTimeout(()=>$('progressIcon').classList.remove('bounce'), 600);
+      let percentage = Math.min(100, Math.max(0, (elapsed / totalDuration) * 100));
+      
+      document.getElementById('progressBar').style.width = percentage.toFixed(4) + '%';
+      let currentPctStr = percentage.toFixed(4);
+      
+      if (currentPctStr !== lastPctStr) {
+        if (lastPctStr !== "" && !document.hidden) {
+          const beam = document.getElementById('beamEffect');
+          beam.classList.remove('animate');
+          void beam.offsetWidth; 
+          beam.classList.add('animate');
+          
+          let oldStrToCompare = lastPctStr;
+          
+          setTimeout(() => {
+            renderDigits('pctNumber', oldStrToCompare, currentPctStr, true);
+          }, 480);
+          
+        } else {
+          // โหลดครั้งแรก หรือ ซ่อนหน้าจอไว้ (ไม่เล่นแอนิเมชัน)
+          renderDigits('pctNumber', currentPctStr, currentPctStr, false);
+        }
+        lastPctStr = currentPctStr;
       }
-
-      const currentMinuteKey = now.getMinutes();
-      if(lastMinutePlayed !== currentMinuteKey){
-        lastMinutePlayed = currentMinuteKey;
-        const snd = $('coinSound');
-        snd.volume = 0.1;
-        snd.play().catch(()=>{});
-      }
-    };
-
-    tick();
-    setInterval(tick, 1000);
+      
+      requestAnimationFrame(updateProgressRealtime);
+    }
+    requestAnimationFrame(updateProgressRealtime);
   </script>
 </body>
 </html>
