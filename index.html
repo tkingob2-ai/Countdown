@@ -125,7 +125,6 @@
 
     header { text-align: center; margin-bottom: 30px; margin-top: 10px; }
     
-    /* ปรับแต่งโลโก้ให้อยู่นิ่ง และแสดงเอฟเฟกต์แสงเรืองรอบนอก */
     .logo-img { 
       width: clamp(90px, 15vw, 130px); 
       height: auto; 
@@ -256,11 +255,18 @@
 
   <script>
     function setTheme(themeName) {
+      // ป้องกันบั๊กกรณี LocalStorage จำค่าแปลกๆ มา
+      const validThemes = ['light', 'dark', 'nature', 'sunset'];
+      if (!validThemes.includes(themeName)) themeName = 'light';
+      
       document.documentElement.setAttribute('data-theme', themeName);
       localStorage.setItem('savedTheme', themeName);
       document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelector(`.btn-${themeName}`).classList.add('active');
+      
+      // ใช้ Optional Chaining (?.) ป้องกัน Error หากหาปุ่มไม่เจอ
+      document.querySelector(`.btn-${themeName}`)?.classList.add('active');
     }
+    
     setTheme(localStorage.getItem('savedTheme') || 'light');
 
     const startDate = new Date(2026, 7, 26, 6, 0, 0); 
@@ -271,6 +277,8 @@
 
     function updateOdometer(id, value) {
       const el = document.getElementById(id);
+      if (!el) return;
+      
       const currentVal = el.getAttribute('data-val');
       
       if (currentVal === null) {
@@ -332,6 +340,7 @@
     
     function renderDigits(containerId, oldStr, newStr, applyPop) {
       const container = document.getElementById(containerId);
+      if (!container) return;
       container.innerHTML = ''; 
       
       const oldFull = oldStr + '%';
@@ -366,15 +375,19 @@
       const elapsed = now.getTime() - startDate.getTime();
       let percentage = Math.min(100, Math.max(0, (elapsed / totalDuration) * 100));
       
-      document.getElementById('progressBar').style.width = percentage.toFixed(4) + '%';
+      const progressBar = document.getElementById('progressBar');
+      if(progressBar) progressBar.style.width = percentage.toFixed(4) + '%';
+      
       let currentPctStr = percentage.toFixed(4);
       
       if (currentPctStr !== lastPctStr) {
         if (lastPctStr !== "" && !document.hidden) {
           const beam = document.getElementById('beamEffect');
-          beam.classList.remove('animate');
-          void beam.offsetWidth; 
-          beam.classList.add('animate');
+          if (beam) {
+            beam.classList.remove('animate');
+            void beam.offsetWidth; 
+            beam.classList.add('animate');
+          }
           
           let oldStrToCompare = lastPctStr;
           
